@@ -1,0 +1,11 @@
+@import "../../styles/variables.scss";
+
+.section {
+	background-color: $white-color;
+	width: 100%;
+	height: fit-content;
+	// overflow-x: scroll;
+	&__wrapper {
+		padding: 45px;
+	}
+}

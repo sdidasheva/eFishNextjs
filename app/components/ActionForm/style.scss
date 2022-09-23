@@ -1,0 +1,69 @@
+@import "../../styles/variables.scss";
+
+.add {
+	&__info {
+		width: 70%;
+		&-row {
+			&-content {
+				outline: none;
+				width: 60%;
+				display: flex;
+				justify-content: space-between;
+				&-input {
+					width: 70%;
+					border: none;
+					outline: none;
+				}
+				&-show {
+					cursor: pointer;
+					svg path {
+						stroke: $thirdly-color;
+					}
+				}
+				&-hide {
+					cursor: pointer;
+				}
+			}
+			&-select {
+				width: 60%;
+			}
+		}
+
+		&-button {
+			background-color: $green-color;
+		}
+	}
+}
+
+.css-b62m3t-container {
+	width: 100% !important;
+}
+.select {
+	&__control {
+		border: 1px solid #d3e7fb !important;
+		border-radius: 5px !important;
+	}
+	&__placeholder {
+		font-weight: 400 !important;
+		font-size: 14px !important;
+		line-height: 17px !important;
+		color: #0a091d !important;
+		padding: 10px 0 11px 11px !important;
+	}
+	&__indicator-separator {
+		display: none;
+	}
+	&__indicator {
+		padding-right: 26px !important;
+		svg {
+			width: 24px;
+			height: 24px;
+			fill: none;
+			stroke-width: 1.5;
+			stroke: $secondary-color;
+			path {
+				d: path("M6 9L12 15L18 9");
+			}
+		}
+	}
+}

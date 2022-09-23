@@ -1,0 +1,29 @@
+@import "../../styles/variables.scss";
+
+.action {
+	&__button {
+		background-color: $green-color;
+	}
+	&__tooltip {
+		position: relative;
+		p {
+			position: absolute;
+			top: 10px;
+			left: 90px;
+			visibility: hidden;
+			background-color: $primary-color;
+			font-weight: 400;
+			font-size: 12px;
+			line-height: 15px;
+			color: #fff;
+			text-align: center;
+			border-radius: 10px;
+			padding: 5px 15px;
+			z-index: 2;
+			white-space: nowrap;
+		}
+		&:hover &-text {
+			visibility: visible;
+		}
+	}
+}

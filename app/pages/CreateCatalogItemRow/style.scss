@@ -1,0 +1,25 @@
+@import "../../styles/variables.scss";
+
+.catalogs-row {
+	&__button {
+		background-color: $green-color;
+		white-space: nowrap;
+		width: 155px;
+	}
+	&__form {
+		display: flex;
+		flex-direction: column !important;
+		&-wrapper {
+			display: flex;
+			flex-direction: row;
+		}
+	}
+	&__error {
+		color: red;
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 17px;
+		text-align: end;
+		margin-bottom: -14px;
+	}
+}

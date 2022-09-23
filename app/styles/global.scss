@@ -1,0 +1,371 @@
+@import "./main.scss";
+@import "./variables.scss";
+
+body {
+	overflow-x: hidden !important;
+	font-family: $main-font !important;
+	color: $primary-color !important;
+	background: $background-color !important;
+	height: 100vh !important;
+}
+
+.title {
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 22px;
+	text-transform: uppercase;
+	border-left: 4px solid $secondary-color;
+	padding-left: 13px;
+	margin-bottom: 50px;
+}
+
+.title__container {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	gap: 19px;
+}
+
+.label {
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 17px;
+	svg {
+		width: 16px;
+		height: 16px;
+		cursor: pointer;
+		&:hover {
+			scale: 1.2;
+		}
+	}
+}
+
+.input {
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 17px;
+	background-color: $white-color;
+	border: 1px solid $border-color;
+	border-radius: 5px;
+	padding: 13px 20px;
+	width: 100%;
+	outline: none;
+}
+
+.button {
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 17px;
+	color: #ffffff;
+	padding: 15px 30px;
+	border: none;
+	border-radius: 100px;
+	outline: none;
+	&:hover {
+		scale: 1.05;
+	}
+}
+
+.error {
+	position: absolute;
+	text-align: end;
+	color: red;
+	top: 50px;
+	right: 0px;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 17px;
+}
+
+.table {
+	height: 100%;
+	width: 100%;
+	margin-top: 35px;
+	thead {
+		background: #f7fbff;
+		border-radius: 10px;
+		tr {
+			th {
+				font-weight: 600;
+				font-size: 12px;
+				line-height: 15px;
+				text-transform: uppercase;
+				padding: 12px 20px;
+				&:first-child {
+					border-top-left-radius: 10px;
+					border-bottom-left-radius: 10px;
+					text-align: center;
+				}
+				&:last-child {
+					border-top-right-radius: 10px;
+					border-bottom-right-radius: 10px;
+					text-align: center;
+				}
+			}
+		}
+	}
+	tbody {
+		tr {
+			width: 100%;
+			border-style: none !important;
+			td {
+				font-weight: 400;
+				font-size: 14px;
+				line-height: 17px;
+				padding: 12px 20px;
+				&:first-child {
+					border-top-left-radius: 10px;
+					border-bottom-left-radius: 10px;
+					text-align: center;
+				}
+				&:last-child {
+					border-top-right-radius: 10px;
+					border-bottom-right-radius: 10px;
+					margin: auto;
+					text-align: center;
+				}
+				svg {
+					cursor: pointer;
+				}
+			}
+			&:nth-child(even) {
+				background: #fbfbfb;
+			}
+		}
+	}
+}
+
+tbody,
+td,
+tfoot,
+th,
+thead,
+tr {
+	border-style: none !important;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+	&__column {
+		display: flex;
+		flex-direction: row;
+		align-items: flex-start;
+		width: 100%;
+	}
+	&__input {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+		position: relative;
+		width: 100%;
+		&-error {
+			position: absolute;
+			right: 0;
+			top: 45px;
+			color: red;
+			font-weight: 400;
+			font-size: 14px;
+			line-height: 17px;
+		}
+		&-icon {
+			position: absolute;
+			right: -40px;
+			top: 10px;
+			cursor: pointer;
+			transition: $transition;
+
+			&:hover {
+				scale: 1.2;
+			}
+			&-remove {
+				right: -80px;
+				svg {
+					background-color: $white-color;
+				}
+			}
+		}
+	}
+	&-labels {
+		display: flex;
+		flex-direction: column;
+		padding-top: 10px;
+		gap: 60px;
+	}
+
+	&-inputs {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+		&-content {
+			display: flex;
+			position: relative;
+			width: 100%;
+			&-error {
+				position: absolute;
+				right: 0;
+				color: red;
+				font-weight: 400;
+				font-size: 14px;
+				line-height: 17px;
+			}
+			&-icon {
+				position: absolute;
+				right: -40px;
+				top: 10px;
+				cursor: pointer;
+				transition: $transition;
+				&:hover {
+					scale: 1.2;
+				}
+				&:last-child {
+					right: -80px;
+				}
+			}
+		}
+	}
+	&__limits {
+		border: 1px solid $border-color;
+		border-radius: 5px;
+		padding: 23px 20px;
+	}
+	&__role {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+		&-collection {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			gap: 5px;
+		}
+		&-button {
+			background-color: $secondary-color;
+			padding: 5px 15px;
+			font-weight: 400;
+			font-size: 12px;
+			line-height: 14px;
+			color: #ffffff;
+			border-radius: 100px;
+			border: none;
+			outline: none;
+			i {
+				margin-left: 5px;
+				svg {
+					transform: rotate(45deg);
+					&:hover {
+						scale: 1.2;
+					}
+				}
+			}
+		}
+	}
+}
+
+.checkbox {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	width: 100%;
+	margin-bottom: 15px;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 17px;
+	transition: $transition;
+	cursor: pointer;
+	&:hover {
+		color: $secondary-color;
+	}
+	&__input {
+		position: absolute;
+		top: 0;
+		right: 0;
+		opacity: 0;
+		cursor: pointer;
+		height: 17px;
+		width: 17px;
+	}
+	&__checkmark {
+		position: absolute;
+		top: 0;
+		right: 0;
+		height: 17px;
+		width: 17px;
+		background-color: transparent;
+		border: 1px solid #000000;
+		border-radius: 6px;
+		cursor: pointer;
+		&:hover {
+			border: 1px solid $secondary-color;
+		}
+		&::after {
+			display: none;
+			content: "";
+			position: absolute;
+			left: 6px;
+			top: 2.5px;
+			width: 4px;
+			height: 8px;
+			border: solid $secondary-color;
+			border-width: 0 2px 2px 0;
+			-webkit-transform: rotate(45deg);
+			-ms-transform: rotate(45deg);
+			transform: rotate(45deg);
+		}
+	}
+	&__input:checked ~ &__checkmark {
+		border: 1px solid $secondary-color;
+	}
+	&__input:checked ~ &__checkmark::after {
+		display: block;
+	}
+}
+
+.roles {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	gap: 40px;
+	&__title {
+		background-color: $secondary-color;
+		color: $white-color;
+		position: absolute;
+		width: 100%;
+		height: 25%;
+		margin: -20px;
+		top: 20px;
+		text-align: center;
+		padding-top: 30px;
+		font-size: 20px;
+	}
+	&__list {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 10px;
+		&-role {
+			background-color: $secondary-color;
+			padding: 5px 10px !important;
+			&-chosen {
+				background-color: $green-color;
+			}
+		}
+	}
+	&__buttons {
+		padding-bottom: 20px;
+		display: flex;
+		flex-direction: row;
+		gap: 20px;
+		justify-content: center;
+		align-items: center;
+		&-save {
+			background-color: $green-color;
+		}
+		&-close {
+			background-color: $primary-color;
+		}
+	}
+}

@@ -1,0 +1,30 @@
+@import "../../styles/variables.scss";
+
+.wrapper {
+	height: 100vh;
+	width: 100%;
+	margin-top: 40px;
+	display: flex;
+	flex-direction: column;
+	gap: 35px;
+	&__main {
+		display: grid;
+		grid-template-columns: 1fr 5fr;
+		gap: 30px;
+	}
+}
+.wave {
+	width: 100vw;
+	height: 141px;
+	background: url("../../../public/assets/images/wave.png") bottom/100% auto
+		no-repeat;
+}
+@media screen and (max-width: 576px) {
+	.wrapper {
+		&__main {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+	}
+}

@@ -1,0 +1,138 @@
+@import "../../styles/variables.scss";
+
+.catalogs {
+	&__inputs {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		gap: 20px;
+		&-find {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			gap: 20px;
+			&-search {
+				border: 1px solid #d3e7fb;
+				border-radius: 5px;
+				padding: 7px 20px 7px 20px;
+				width: 400px;
+				display: flex;
+				justify-content: space-between;
+				input {
+					border: none;
+					outline: none;
+					width: 100%;
+				}
+			}
+		}
+		&-button {
+			background-color: $secondary-color;
+			border-radius: 100px;
+			vertical-align: middle;
+			white-space: nowrap;
+			svg {
+				margin-left: 10px;
+			}
+		}
+	}
+	&__actions {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		width: 100px;
+	}
+	&__tooltip {
+		position: relative;
+		p {
+			position: absolute;
+			visibility: hidden;
+			background-color: $primary-color;
+			font-weight: 400;
+			font-size: 12px;
+			line-height: 15px;
+			color: #fff;
+			text-align: center;
+			border-radius: 10px;
+			padding: 5px 15px;
+			z-index: 2;
+			top: -30px;
+		}
+		svg {
+			width: 18px;
+			height: 18px;
+		}
+		&:hover &-text {
+			visibility: visible;
+		}
+	}
+	&__pagination {
+		display: flex;
+		flex-direction: row;
+		gap: 30px;
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 17px;
+		margin: 30px 0;
+		&-per-page {
+			position: relative;
+			display: flex;
+			flex-direction: row;
+			gap: 10px;
+			cursor: pointer;
+			&-dropdown {
+				position: absolute;
+				top: 20px;
+				width: 100%;
+				list-style: none;
+				border: 1px solid #d3e7fb;
+				border-radius: 5px;
+				padding: 5px 10px 5px 2px;
+				box-shadow: 0px 8px 50px rgba(210, 232, 254, 0.4);
+				animation-name: dropdown;
+				animation-duration: 0.3s;
+				animation-timing-function: ease;
+				li {
+					white-space: nowrap;
+					text-align: left;
+					padding-bottom: 5px;
+					cursor: pointer;
+				}
+			}
+		}
+		&-navigation {
+			display: flex;
+			flex-direction: row;
+			gap: 10px;
+			&-arrows {
+				cursor: pointer;
+				display: flex;
+				flex-direction: row;
+				align-items: flex-start;
+				margin-top: -2px;
+				button {
+					background-color: $white-color;
+					border: none;
+					color: none;
+				}
+			}
+		}
+	}
+}
+
+.css-b62m3t-container {
+	width: 100% !important;
+}
+
+@keyframes dropdown {
+	0% {
+		top: 50%;
+	}
+	50% {
+		border-radius: 0%;
+	}
+	100% {
+		top: 100%;
+	}
+}
