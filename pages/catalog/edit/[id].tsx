@@ -10,32 +10,9 @@ import EditCatalogs from "../../../app/components/EditCatalogs/EditCatalogs";
 import Wrapper from "../../../app/components/Wrapper/Wrapper";
 
 const EditCatalog = ({ id }: any) => {
-	const [catalogInfo, setCatalogInfo] = useState<ICatalogAction>();
-	const router = useRouter();
-
-	// get catalog
-	useEffect(() => {
-		CatalogService.showCatalog(id).then((res) => setCatalogInfo(res?.data));
-	}, []);
-
-	// submit edited data
-	const onSubmit = (data: ICreateCatalog) => {
-		const addCatalogData = {
-			name: data.name,
-			modules: [data.limits],
-			columns: [data.name],
-		};
-		CatalogService.editCatalog(id, addCatalogData);
-		// router.push("/catalog");
-	};
-
 	return (
 		<Wrapper>
-			<EditCatalogs
-				title="Редактировать справочник"
-				onSubmit={onSubmit}
-				catalogInfo={catalogInfo}
-			/>
+			<EditCatalogs id={id} />
 		</Wrapper>
 	);
 };

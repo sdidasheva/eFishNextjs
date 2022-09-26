@@ -42,7 +42,7 @@ const createCatalog = (data: any) => {
 };
 
 const editCatalog = (id: number, data: any) => {
-	return http.post(`catalog/{id}`, data, {
+	return http.post(`catalog/${id}`, data, {
 		headers: {
 			Authorization: `Bearer ${LocalStorageHandler.getUserToken()}`,
 		},

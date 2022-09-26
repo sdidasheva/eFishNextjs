@@ -7,6 +7,9 @@ const CatalogItemTable = ({ catalogItem }) => {
 	// get info for each row
 	let rows = catalogItem?.data.map((values: any) => values);
 	let row = rows.map((a: any) => a);
+	console.log(catalogItem);
+
+	console.log(header);
 
 	return (
 		<table className="table">

@@ -22,12 +22,12 @@ const CreateCatalogItemRow = ({ id, catalogRow }) => {
 
 	// submit/add data
 	const onSubmit = (data: ICatalogItem) => {
-		console.log(data);
 		const addCatalogRow = {
-			values: [{ columnId: data.value }],
+			values: data.values,
 		};
-		CatalogService.createCatalogRow(id, addCatalogRow); //!How to send data
+		CatalogService.createCatalogRow(id, addCatalogRow); //!422 (Unprocessable Content)
 		// router.push("/catalog");
+		console.log(addCatalogRow);
 	};
 	return (
 		<Layout>
@@ -54,12 +54,12 @@ const CreateCatalogItemRow = ({ id, catalogRow }) => {
 									type="text"
 									className="input"
 									//@ts-ignore
-									{...register(`value.${label?.column?.id}`, {
+									{...register(`values[${label?.column?.id}]`, {
 										required: "Поле обязательно",
 									})}
 								/>
 								<p className="catalogs-row__error">
-									{errors.value?.[label?.column?.id]?.message}
+									{errors.values?.[label?.column?.id]?.message}
 								</p>
 							</div>
 						</div>

@@ -56,6 +56,7 @@ export interface ICatalogItem {
 }
 
 export interface ICatalogAction{
+	modules: any;
 	id: number,
 	name: string,
 	description: string,

@@ -7,6 +7,7 @@
 	display: flex;
 	flex-direction: column;
 	gap: 35px;
+	flex: 1 1 auto;
 	&__main {
 		display: grid;
 		grid-template-columns: 1fr 5fr;
@@ -14,6 +15,7 @@
 	}
 }
 .wave {
+	z-index: -1;
 	width: 100vw;
 	height: 141px;
 	background: url("../../../public/assets/images/wave.png") bottom/100% auto

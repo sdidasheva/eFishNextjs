@@ -13,21 +13,19 @@ import Link from "next/link";
 import ArrowBlue from "../../icons/ArrowRole";
 import PlusCircleBlue from "../../icons/PlusCircleBlue";
 import PlusCircle from "../../icons/PlusCircle";
-import MinusCircle from "../../icons/MinusCircle";
 
 const AddCatalogs = () => {
-	const [columns, setColumns] = useState([{ column: "" }]);
 	const [roles, setRoles] = useState([]);
-	const [catalogRoles, setCatalogRoles] = useState([]);
+	const [catalogRoles, setCatalogRoles] = useState<any>([]);
 	const [isModalOpened, setIsModalOpened] = useState(false);
 	const [chosenRole, setChosenRole] = useState<Boolean>(false);
 	const limitsLabel = [
-		"Лимиты верхняя строка",
-		"Лимиты левая колонка",
-		"Пользователи",
-		"Реестр данных",
-		"Электронный промысловый журнал",
-		"Отчеты",
+		"limits_top",
+		"limits_left",
+		"users",
+		"data_register",
+		"trade",
+		"reporting",
 	];
 	const router = useRouter();
 
@@ -45,12 +43,14 @@ const AddCatalogs = () => {
 	const onSubmit = (data: ICreateCatalog) => {
 		const addCatalogData = {
 			name: data.name,
-			modules: [data.limits],
-			columns: [data.name],
-			roles: [data.roles],
+			modules: data.modules,
+			//@ts-ignore
+			columns: [data.columns1, data.columns2],
+			roles: data.roles,
 		};
 		CatalogService.createCatalog(addCatalogData);
 		// router.push("/catalog");
+		console.log(addCatalogData);
 	};
 
 	// get roles
@@ -58,27 +58,21 @@ const AddCatalogs = () => {
 		UsersService.getRoles().then((res) => setRoles(res?.data));
 	}, []);
 
-	// add button
-	const handleColumnAdd = () => {
-		setColumns([...columns, { column: "" }]);
-	};
-
-	// remove button
-	const handleColumnRemove = (index: number) => {
-		console.log(index);
-		const list = [...columns];
-		list.splice(index, 1);
-		setColumns(list);
-	};
-	// console.log(columns);
+	// add roles
+	// const handleClickRole = (roleId: number, roleDescription: string) => {
+	// 	setCatalogRoles([...catalogRoles, roleId]);
+	// };
+	// console.log(catalogRoles);
 
 	// modal: style chosen roles
-	const handleClickRole = (roleDescription: string) => {
+	const handleClickRole = (roleId: number) => {
 		setChosenRole((prevState) => ({
 			...chosenRole,
-			[roleDescription]: !prevState[roleDescription],
+			[roleId]: !prevState[roleId],
 		}));
 	};
+
+	// console.log(chosenRole);
 
 	// push choosen roles
 	const handleClickCatalogRoles = () => {
@@ -89,13 +83,14 @@ const AddCatalogs = () => {
 		setIsModalOpened(false);
 	};
 
-	//remove chosen roles
+	// remove chosen roles
 	const handleRemoveRole = (index: number) => {
 		const list = [...catalogRoles];
 		list.splice(index, 1);
 		setCatalogRoles(list);
 	};
 
+	catalogRoles.map((role) => console.log(role));
 	return (
 		<Layout>
 			<div className="title__container">
@@ -122,44 +117,35 @@ const AddCatalogs = () => {
 				</div>
 				{/* Поле столбцы */}
 				<div className="form__column">
-					<label className="label col-3">Столбцы в таблице</label>
+					<label className="label col-3">Столбец 1</label>
 					<div className="form__input col-5">
-						{columns &&
-							columns?.map((column: ICreateCatalog, index) => (
-								<div className="d-flex w-100" key={index}>
-									<input
-										name="column"
-										type="text"
-										className="input"
-										//@ts-ignore
-										{...register(`columns${index}`)}
-										placeholder="Доп.поле"
-									/>
-									{columns.length - 1 === index && (
-										<a className="action__tooltip">
-											<p className="action__tooltip-text">Добавить поле</p>
-											<i
-												className="form__input-icon"
-												onClick={() => handleColumnAdd()}
-											>
-												<PlusCircleBlue />
-											</i>
-										</a>
-									)}
-									{index ? (
-										<a className="action__tooltip">
-											<p className="action__tooltip-text">Удалить поле</p>
-											<i
-												className="form__input-icon form__input-icon-remove"
-												onClick={() => handleColumnRemove(index)}
-											>
-												<MinusCircle />
-											</i>
-										</a>
-									) : null}
-									{/* <p className="form-inputs-content-error">{errors?.name?.message}</p> */}
-								</div>
-							))}
+						<div className="d-flex w-100">
+							<input
+								name="columns1"
+								type="text"
+								className="input"
+								//@ts-ignore
+								{...register(`columns1`)}
+								placeholder="Столбец 1"
+							/>
+							{/* <p className="form-inputs-content-error">{errors?.name?.message}</p> */}
+						</div>
+					</div>
+				</div>
+				<div className="form__column">
+					<label className="label col-3">Столбец 2</label>
+					<div className="form__input col-5">
+						<div className="d-flex w-100">
+							<input
+								name="columns2"
+								type="text"
+								className="input"
+								//@ts-ignore
+								{...register(`columns2`)}
+								placeholder="Столбец 2"
+							/>
+							{/* <p className="form-inputs-content-error">{errors?.name?.message}</p> */}
+						</div>
 					</div>
 				</div>
 				{/* Поле лимиты - модули */}
@@ -171,9 +157,12 @@ const AddCatalogs = () => {
 								<label className=" checkbox">
 									{label}
 									<input
+										name="modules"
 										className="checkbox__input"
 										type="checkbox"
-										{...register(`modules`)}
+										//@ts-ignore
+										{...register(`modules[${label}]`)}
+										// value={label}
 									/>
 									<span className="checkbox__checkmark"></span>
 								</label>
@@ -190,7 +179,11 @@ const AddCatalogs = () => {
 						<div className="form__role-collection">
 							{catalogRoles &&
 								catalogRoles.map((role, index) => (
-									<button className="form__role-button " {...register(`roles`)}>
+									<button
+										className="form__role-button"
+										//@ts-ignore
+										{...register(`roles[${role}]`)}
+									>
 										{role}
 										<i onClick={() => handleRemoveRole(index)}>
 											<PlusCircle />
@@ -211,11 +204,11 @@ const AddCatalogs = () => {
 									roles.map((role) => (
 										<button
 											className={`roles__list-role button ${
-												chosenRole[`${role.description}`]
+												chosenRole[`${role.id}`]
 													? "roles__list-role-chosen"
 													: ""
 											}`}
-											onClick={() => handleClickRole(role.description)}
+											onClick={() => handleClickRole(role.id)}
 										>
 											{role.description}
 										</button>
